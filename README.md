@@ -1,105 +1,58 @@
-# CosmoShop — Flutter интернет-магазин косметики
+Понял! Тогда просто перепишу примеры данных в таблицах README под Ош/Кыргызстан.
 
-## 🗄️ MockAPI — структура таблиц
+---
 
-Создайте проект на [mockapi.io](https://mockapi.io) и добавьте 2 таблицы.
+### Таблица `products` — примеры для MockAPI
 
-### Таблица `products`
-| Поле | Тип | Пример |
-|------|-----|--------|
-| id | String (auto) | "1" |
-| name | String | "Помада стойкая матовая" |
-| description | String | "Долгостойкая помада..." |
-| price | Number | 1500 |
-| imageUrl | String | "https://..." |
-| category | String | "lips" / "eyes" / "skin" / "hair" / "nails" |
-| stock | Number | 25 |
-| isAvailable | Boolean | true |
-| createdAt | String | "2024-01-15T10:00:00.000Z" |
+| Поле | Пример 1 | Пример 2 | Пример 3 |
+|------|----------|----------|----------|
+| name | "Помада стойкая матовая" | "Тональный крем SPF30" | "Тушь для ресниц объёмная" |
+| description | "Стойкая помада до 12 часов, не оставляет следов" | "Лёгкое покрытие с защитой от солнца" | "Придаёт объём и длину, не осыпается" |
+| price | 350 | 890 | 420 |
+| imageUrl | "https://picsum.photos/seed/lipstick/400/400" | "https://picsum.photos/seed/foundation/400/400" | "https://picsum.photos/seed/mascara/400/400" |
+| category | "lips" | "skin" | "eyes" |
+| stock | 30 | 15 | 22 |
+| isAvailable | true | true | false |
 
-### Таблица `orders`
-| Поле | Тип | Пример |
-|------|-----|--------|
-| id | String (auto) | "1" |
-| customerName | String | "Айгуль Бекова" |
-| customerPhone | String | "+7 777 123 45 67" |
-| address | String | "г. Алматы, ул. Абая 10, кв. 5" |
-| items | Array | [{productId, productName, price, quantity, imageUrl}] |
-| totalAmount | Number | 4500 |
-| status | String | "pending" / "confirmed" / "shipping" / "delivered" / "cancelled" |
-| note | String | "Позвоните перед доставкой" |
-| createdAt | String | "2024-01-15T10:00:00.000Z" |
+> Цены в **KGS (сом)**. Реальный диапазон: бюджетная косметика 150–500 сом, средний сегмент 500–1500 сом.
 
-После создания вставьте Base URL в `lib/config.dart`:
+---
+
+### Таблица `orders` — примеры для MockAPI
+
+| Поле | Пример 1 | Пример 2 |
+|------|----------|----------|
+| customerName | "Айзат Матисакова" | "Жылдыз Эргешова" |
+| customerPhone | "+996 700 123 456" | "+996 555 987 654" |
+| address | "г. Ош, мкр. Достук, ул. Ленина 45, кв. 12" | "г. Ош, Жийде базар, ул. Курманжан Датка 18" |
+| totalAmount | 1240 | 3780 |
+| status | "pending" | "delivered" |
+| note | "Позвоните за 30 минут до доставки" | "Оставить у соседей если меня нет дома" |
+
+---
+
+### `lib/config.dart` — обновлённые учётные данные
+
 ```dart
-static const String mockApiBase = 'https://YOUR_ID.mockapi.io/api/v1';
+class Config {
+  static const String mockApiBase = 'https://YOUR_ID.mockapi.io/api/v1';
+
+  // Администратор
+  static const String adminEmail    = 'admin@cosmosh.kg';
+  static const String adminPassword = 'admin123';
+
+  // Валюта
+  static const String currency      = 'сом';
+  static const String currencyCode  = 'KGS';
+}
 ```
 
 ---
 
-## 🚀 Запуск
-```bash
-flutter pub get
-flutter run
-```
+### Что изменилось
 
----
-
-## 📱 Экраны
-
-### Покупатель
-| Экран | Описание |
-|-------|----------|
-| Каталог | Список товаров, поиск, фильтр по категориям |
-| Карточка товара | Детали, добавление в корзину |
-| Корзина | Список товаров, изменение количества |
-| Оформление заказа | Форма с именем, телефоном, адресом |
-| Успешный заказ | Подтверждение с номером заказа |
-
-### Администратор
-| Экран | Описание |
-|-------|----------|
-| Вход | Email + пароль (admin@cosmo.com / admin123) |
-| Товары | Список, добавление, редактирование, удаление |
-| Заказы | Список всех заказов, смена статуса, удаление |
-
----
-
-## 🔑 Вход администратора
-```
-Email:  admin@cosmo.com
-Пароль: admin123
-```
-Чтобы сменить — откройте `lib/config.dart`.
-
----
-
-## 📂 Структура проекта
-```
-lib/
-├── main.dart
-├── config.dart
-├── models/
-│   ├── product_model.dart
-│   ├── order_model.dart
-│   └── cart_item_model.dart
-├── services/
-│   ├── api_service.dart
-│   └── shop_provider.dart
-├── widgets/
-│   ├── product_card.dart
-│   └── order_status_badge.dart
-└── screens/
-    ├── buyer/
-    │   ├── catalog_screen.dart
-    │   ├── product_detail_screen.dart
-    │   ├── cart_screen.dart
-    │   ├── checkout_screen.dart
-    │   └── order_success_screen.dart
-    └── admin/
-        ├── admin_login_screen.dart
-        ├── admin_screen.dart
-        ├── admin_products_tab.dart
-        ├── admin_product_form.dart
-        └── admin_orders_tab.dart
-```
+- **Телефоны** — формат `+996 7XX XXX XXX` (Кыргызтелеком / MegaCom / Beeline KG)
+- **Адреса** — реальные районы Оша: мкр. Достук, Жийде базар, ул. Курманжан Датка
+- **Имена** — кыргызские женские имена (целевая аудитория косметики)
+- **Цены** — в сомах, соответствуют местному рынку
+- **Email администратора** — домен `.kg`
